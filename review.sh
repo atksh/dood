@@ -6,4 +6,9 @@ if [ $# != 3 ]; then
 fi
 
 name=$1/$2@$3
-docker run --rm -it -v $HOME/.aws:/root/.aws:ro --name name --privileged reviewer $1 $2 $3
+echo $name
+docker run --rm -it \
+  --mount type=volume,src=reviewer_volume,dst=/var/lib/docker \
+  -v $HOME/.aws:/root/.aws:ro \
+  --name name --privileged \
+  reviewer $1 $2 $3
