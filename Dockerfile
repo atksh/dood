@@ -27,15 +27,18 @@ RUN apt-get update && \
     pip3 install awscli --upgrade && \
     apt-get install -y awscli
 
-RUN mkdir /root/.ssh && \
-    touch /root/.ssh/config && \
-    echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+ARG SSH_PRIVATE_KEY
+RUN mkdir /root/.ssh/ &&\
+    echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa &&\
+    chmod 600 /root/.ssh/id_rsa &&\
+    touch /root/.ssh/known_hosts &&\
+    ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-ENV SSH_AUTH_SOCK /tmp/ssh-agent.sock
 ENV DOCKER_BUILDKIT 1
+ENV PS1 '[\u@\h \W]\$'
 VOLUME /var/lib/docker
-WORKDIR /work
+WORKDIR /root
 ENTRYPOINT ["docker-entrypoint.sh"]

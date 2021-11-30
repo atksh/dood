@@ -1,7 +1,10 @@
 # dood
 
+debian container w/ 
+- aws credentials
+- ssh private key
+
 ```bash
-docker build -t reviewer .
-cp review.sh ~/.local/bin/review.sh && chmod +x ~/.local/bin/review.sh
+sh install.sh ~/.ssh/id_rsa
 review {organization or account} {repo} {branch}
 ```
