@@ -22,5 +22,6 @@ RUN apt-get update && \
     pip3 install awscli --upgrade && \
     apt-get install -y awscli
 
+ENV SSH_AUTH_SOCK /tmp/ssh-agent.sock
 WORKDIR /work
 ENTRYPOINT /bin/bash
