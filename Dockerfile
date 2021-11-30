@@ -27,7 +27,11 @@ RUN apt-get update && \
     python3-pip && \
     pip3 install awscli --upgrade && \
     apt-get install -y awscli
+COPY run.sh /root/run.sh
+RUN chmod +x /root/run.sh
 
 ENV SSH_AUTH_SOCK /tmp/ssh-agent.sock
+ENV DOCKER_BUILDKIT 1
+VOLUME /var/lib/docker
 WORKDIR /work
-ENTRYPOINT /bin/bash
+ENTRYPOINT /root/run.sh
