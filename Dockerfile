@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM python:3.9-buster
 
 RUN apt-get update && \
     apt-get install -y \
@@ -22,9 +22,8 @@ RUN apt-get update && \
     vim \
     tmux \
     htop \
-    iptraf-ng \
-    python3-pip && \
-    pip3 install awscli --upgrade && \
+    iptraf-ng && \
+    pip install awscli --upgrade && \
     apt-get install -y awscli
 
 ARG SSH_PRIVATE_KEY
