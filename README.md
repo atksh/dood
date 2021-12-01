@@ -1,6 +1,6 @@
-# dood
+# review envirionment
 
-debian container w/ 
+python-debian container w/ 
 - aws credentials
 - ssh private key
 
