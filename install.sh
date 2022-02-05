@@ -8,5 +8,5 @@ fi
 private_key_path=$1
 docker volume create reviewer_volume
 docker build -t reviewer --build-arg SSH_PRIVATE_KEY="$(cat $private_key_path)" .
-cp review.sh ~/.local/bin/review.sh && chmod +x ~/.local/bin/review.sh
+cp review ~/.local/bin/review && chmod +x ~/.local/bin/review
 
