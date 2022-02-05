@@ -11,6 +11,7 @@ echo $name
 docker run -d --rm \
   --mount type=volume,src=reviewer_volume,dst=/var/lib/docker \
   -v $HOME/.aws:/root/.aws:ro \
+  -v $HOME/.ssh:/root/.ssh:ro \
   --name $name_ --privileged \
   reviewer
 
