@@ -17,4 +17,4 @@ docker run -d --rm \
 docker exec -it $name_ \
   my_entrypoint.sh $1 $2 $3
 
-docker stop $name_
+docker stop $name_ >> /dev/null
