@@ -2,9 +2,7 @@ FROM docker:stable-dind
 
 RUN apk add --no-cache git openssh-client vim tmux htop bash 
 RUN apk update \
-    && apk add --no-cache libffi-dev openssl-dev gcc g++ libc-dev rust cargo make \
-    cmake alpine-sdk libressl-dev python3-dev py3-pip \
-    && ln -s /usr/bin/python3 /usr/bin/python \
+    && apk add --no-cache libffi-dev openssl-dev gcc libc-dev rust cargo make python3-dev py3-pip \
     && pip3 install --upgrade --no-cache-dir \
         pip \
         wheel \
