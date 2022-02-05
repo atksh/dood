@@ -6,7 +6,7 @@ if [ $# != 3 ]; then
 fi
 
 name=$1/$2@$3
-name_=$1_$2_$3
+name_=$(echo $1_$2_$3 | sed -e "s/\//_/g") 
 echo $name
 docker run -d --rm \
   --mount type=volume,src=reviewer_volume,dst=/var/lib/docker \
