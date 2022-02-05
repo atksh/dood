@@ -2,8 +2,8 @@ FROM docker:stable-dind
 
 RUN apk add --no-cache git openssh-client vim tmux htop bash 
 RUN apk update \
-    && apk add --no-cache libffi-dev openssl-dev gcc libc-dev rust cargo make \
-    && apk add --no-chache --repository http://dl-cdn.alpinelinux.org/alpine/v3.15/main python3-dev~=3.8 py3-pip \
+    && apk add --no-cache libffi-dev openssl-dev gcc g++ libc-dev rust cargo make \
+    cmake alpine-sdk libressl-dev python3-dev py3-pip \
     && ln -s /usr/bin/python3 /usr/bin/python \
     && pip3 install --upgrade --no-cache-dir \
         pip \
