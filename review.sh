@@ -6,9 +6,15 @@ if [ $# != 3 ]; then
 fi
 
 name=$1/$2@$3
+name_=$1_$2_$3
 echo $name
-docker run --rm -it \
+docker run -d --rm \
   --mount type=volume,src=reviewer_volume,dst=/var/lib/docker \
   -v $HOME/.aws:/root/.aws:ro \
-  --name name --privileged \
-  reviewer $1 $2 $3
+  --name $name_ --privileged \
+  reviewer
+
+docker exec -it $name_ \
+  my_entrypoint.sh $1 $2 $3
+
+docker stop $name_
