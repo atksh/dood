@@ -5,7 +5,7 @@ python-debian container w/
 - ssh private key
 
 ```bash
-sh install.sh ~/.ssh/id_rsa
+sh install.sh
 review {organization or account} {repo} {branch}
 ```
 
