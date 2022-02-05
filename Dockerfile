@@ -1,16 +1,18 @@
 FROM docker:stable-dind
 
 RUN apk add --no-cache git openssh-client vim tmux htop bash 
-RUN apk update && apk add --no-chache --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/main python3-dev~=3.8 py3-pip \
+RUN apk update \
     && apk add --no-cache libffi-dev openssl-dev gcc libc-dev rust cargo make \
+    && apk add --no-chache --repository http://dl-cdn.alpinelinux.org/alpine/v3.15/main python3-dev~=3.8 py3-pip \
     && ln -s /usr/bin/python3 /usr/bin/python \
-    && pip3 install --upgrade pip \
     && pip3 install --upgrade --no-cache-dir \
+        pip \
         wheel \
         setuptools \
     && pip3 install --upgrade --no-cache-dir \
         docker-compose \
         awscli \
+    && pip3 install --ignore-installed distlib poetry \
     && rm -rf /var/cache/apk/*
 
 ARG SSH_PRIVATE_KEY
